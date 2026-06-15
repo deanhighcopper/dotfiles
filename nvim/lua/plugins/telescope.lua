@@ -3,7 +3,11 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { 
+      "nvim-lua/plenary.nvim",
+      -- optional but recommended
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+    },
     cmd = "Telescope",
     keys = {
       { "<leader><space>", "<cmd>Telescope find_files<cr>", desc = "Find files" },

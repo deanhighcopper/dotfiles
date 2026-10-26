@@ -15,6 +15,8 @@ brew "create-dmg"
 brew "curl"
 # Tcl/Tk UI for the git revision control system
 brew "git-gui"
+# Resource monitor (mise's aqua backend for btop is linux-only)
+brew "btop"
 # Generic library support script
 brew "libtool"
 # Graph visualization software from AT&T and Bell Labs
@@ -25,14 +27,10 @@ brew "libfido2"
 brew "make"
 # Hash utilities
 brew "md5sha1sum"
-# Open source relational database management system
-brew "mysql"
 # Clean C library for processing UTF-8 Unicode data
 brew "utf8proc", args: ["HEAD"]
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
-# Protoc plugin for gRPC Java
-brew "protoc-gen-grpc-java"
 # User interface to the TELNET protocol
 brew "telnet"
 # Executes a program periodically, showing output fullscreen

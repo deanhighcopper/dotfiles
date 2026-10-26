@@ -3,6 +3,9 @@
 
 [settings]
 experimental = true
+# Resolve npm: tools via the npm CLI so ~/.npmrc (registry/auth/proxy) is honoured;
+# mise's built-in HTTP client gets 403 from registry.npmjs.org on this network.
+npm.shell_out = true
 
 [tools]
 # Languages / runtimes
@@ -30,7 +33,6 @@ ninja = "latest"
 maven = "latest"
 
 # CLI utilities
-btop = "latest"
 direnv = "latest"
 fzf = "latest"
 gh = "latest"
@@ -47,13 +49,9 @@ tmux = "latest"
 colima = "latest"
 docker-compose = "latest"
 kubectl = "latest"
-tfswitch = "latest"
 
 # npm globals
-"npm:@github/copilot" = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
-"npm:corepack" = "latest"
-"npm:docs-sync" = "latest"
 "npm:pyright" = "latest"
 "npm:typescript" = "latest"
 "npm:typescript-language-server" = "latest"

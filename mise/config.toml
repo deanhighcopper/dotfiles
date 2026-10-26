@@ -1,0 +1,60 @@
+# Global mise tools, symlinked to ~/.config/mise/config.toml by `mise run link`.
+# Brew-only items (system libs, casks, tools without a mise backend) stay in ../Brewfile.
+
+[settings]
+experimental = true
+
+[tools]
+# Languages / runtimes
+go = "1.26"
+node = "lts"            # replaces nvm
+rust = "stable"         # replaces rustup
+java = "temurin-21"     # needed by maven (brew pulled openjdk implicitly)
+uv = "latest"
+
+# Go tooling
+golangci-lint = "latest"
+gotestsum = "latest"
+"go:golang.org/x/tools/gopls" = "latest"
+"go:github.com/wailsapp/wails/v2/cmd/wails" = "latest"
+
+# Protobuf / gRPC
+protoc = "latest"
+protoc-gen-go = "latest"
+protoc-gen-go-grpc = "latest"
+grpcurl = "latest"
+
+# Build
+cmake = "latest"
+ninja = "latest"
+maven = "latest"
+
+# CLI utilities
+btop = "latest"
+direnv = "latest"
+fzf = "latest"
+gh = "latest"
+jq = "latest"
+mkcert = "latest"
+neovim = "latest"
+oh-my-posh = "latest"
+ripgrep = "latest"
+ruff = "latest"
+stylua = "latest"
+tmux = "latest"
+
+# Containers / k8s / infra
+colima = "latest"
+docker-compose = "latest"
+kubectl = "latest"
+tfswitch = "latest"
+
+# npm globals
+"npm:@github/copilot" = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:corepack" = "latest"
+"npm:docs-sync" = "latest"
+"npm:pyright" = "latest"
+"npm:typescript" = "latest"
+"npm:typescript-language-server" = "latest"
+"npm:markdownlint-cli2" = "latest"

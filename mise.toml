@@ -1,0 +1,50 @@
+# Laptop bootstrap.
+#
+# On a fresh machine:
+#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#   brew install mise
+#   git clone <this repo> && cd dotfiles
+#   mise trust && mise run bootstrap
+#
+# Global tools live in mise/config.toml; brew-only packages live in Brewfile.
+
+[tasks.brew]
+description = "Install Homebrew packages, casks and taps from Brewfile"
+run = "brew bundle --file={{config_root}}/Brewfile"
+
+[tasks.link]
+description = "Symlink dotfiles into place (existing non-symlinks are backed up to *.bak)"
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+root="{{config_root}}"
+link() {
+  local src="$root/$1" dest="$2"
+  mkdir -p "$(dirname "$dest")"
+  if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+    mv "$dest" "$dest.bak.$(date +%Y%m%d%H%M%S)"
+    echo "backed up $dest"
+  fi
+  ln -sfn "$src" "$dest"
+  echo "$dest -> $src"
+}
+link mise/config.toml                 "$HOME/.config/mise/config.toml"
+link nvim                             "$HOME/.config/nvim"
+link .tmux.conf                       "$HOME/.tmux.conf"
+link oh-my-posh/oh-my-posh.omp.json   "$HOME/.config/oh-my-posh.omp.json"
+link starship.toml                    "$HOME/.config/starship.toml"
+'''
+
+[tasks.tools]
+description = "Install global mise tools"
+depends = ["link"]
+run = "mise install --yes"
+
+[tasks.bootstrap]
+description = "Bootstrap a laptop: brew packages, dotfile links, mise tools"
+depends = ["brew", "tools"]
+run = '''
+echo
+echo "Done. Add to ~/.zshrc if not already present:"
+echo '  eval "$(mise activate zsh)"'
+'''
